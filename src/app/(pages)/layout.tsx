@@ -13,12 +13,9 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
-import { UltraPieChart } from "@/components/ultra-pie-chart"
-import { UltraRadialChart } from "@/components/ultra-radial-chart"
-import { UltraLineChart } from "@/components/ultra-line-chart"
-import { PaymentsDataTable } from "@/components/payments-table"
+import ActiveBreadcrumbPage from "@/components/active-breadcrumb-page"
 
-export default function Page() {
+export default function PagesLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -31,26 +28,21 @@ export default function Page() {
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
                   <BreadcrumbLink href="#">
-                    Building Your Application
+                    Management
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
                 <BreadcrumbItem>
-                  <BreadcrumbPage>Data Fetching</BreadcrumbPage>
+                  <ActiveBreadcrumbPage />
                 </BreadcrumbItem>
               </BreadcrumbList>
             </Breadcrumb>
           </div>
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
-          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-            <UltraPieChart />
-            <UltraRadialChart />
-            <UltraLineChart />
-          </div>
-          <PaymentsDataTable />
+          {children}
         </div>
       </SidebarInset>
     </SidebarProvider>
-  )
+  );
 }

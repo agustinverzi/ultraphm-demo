@@ -1,5 +1,3 @@
-"use client"
-
 import { ChevronRight, type LucideIcon } from "lucide-react"
 
 import {
@@ -9,14 +7,13 @@ import {
 } from "@/components/ui/collapsible"
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
-  SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
+import ActiveAppSidebarItem from "@/components/active-app-sidebar-item"
 
 export function NavMain({
   items,
@@ -34,7 +31,6 @@ export function NavMain({
 }) {
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
           <Collapsible
@@ -55,11 +51,7 @@ export function NavMain({
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </a>
-                      </SidebarMenuSubButton>
+                      <ActiveAppSidebarItem subItem={subItem} />
                     </SidebarMenuSubItem>
                   ))}
                 </SidebarMenuSub>
